@@ -48,7 +48,10 @@ public class Personnage {
     }
 
     public Personnage(String nom) {
-
+        this.nom = nom;
+        this.type = "";
+        this.pv = 0;
+        this.forceatk = 0;
     }
 
    public Personnage(String nom, String type) {
@@ -58,7 +61,8 @@ public class Personnage {
         this.forceatk = 0;
     }
 
+
     public String toString() {
-        return nom + " : " + type  + " pv: "+ pv + " force: " + forceatk;
+        return "Personnage : " + nom + " " + type  + " " + pv + " pv " + forceatk + " force";
     }
 }
