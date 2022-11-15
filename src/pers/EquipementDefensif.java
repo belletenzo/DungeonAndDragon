@@ -3,8 +3,9 @@ package pers;
 public class EquipementDefensif {
     private String Bouclier;
     private String Philtre;
-    private int def;
-    private String name;
+    private int def = 0;
+    private String name = "";
+
     public String getBouclier() {
         return Bouclier;
     }
@@ -38,9 +39,12 @@ public class EquipementDefensif {
     }
 
 
-
-    public EquipementDefensif(String name,int def){
+    public EquipementDefensif(String name, int def) {
         this.name = name;
         this.def = def;
+    }
+
+    public String toString() {
+        return "| Equipement défensif : " + name + " def " + def;
     }
 }
