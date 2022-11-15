@@ -9,6 +9,17 @@ public class Personnage {
     private int forceatk;
     private EquipementOffensif off;
     private EquipementDefensif def;
+    private int posPlayer;
+
+    public int getPosPlayer() {
+        return posPlayer;
+    }
+
+    public void setPosPlayer(int posPlayer) {
+        this.posPlayer = posPlayer;
+    }
+
+
 
     public EquipementOffensif getOff() {
         return off;
@@ -41,7 +52,7 @@ public class Personnage {
 
     public void setType(String type) {
         this.type = type;
-
+        updateStrengthAndHealth();
     }
 
     public int getPv() {
@@ -79,6 +90,7 @@ public class Personnage {
         this.nom = nom;
         this.type = type;
         updateStrengthAndHealth();
+        this.posPlayer = 0;
         
     }
 
