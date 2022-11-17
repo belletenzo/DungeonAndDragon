@@ -1,6 +1,6 @@
-package plateau;
+package fr.campus_numerique_module_java.d_d.plateau;
 
-import pers.Personnage;
+import fr.campus_numerique_module_java.d_d.pers.Personnage;
 
 public class Plateau {
     private int nbCase;
