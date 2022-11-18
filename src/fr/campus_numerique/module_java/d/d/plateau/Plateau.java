@@ -1,6 +1,6 @@
-package fr.campus_numerique_module_java.d_d.plateau;
+package fr.campus_numerique.module_java.d.d.plateau;
 
-import fr.campus_numerique_module_java.d_d.pers.Personnage;
+import fr.campus_numerique.module_java.d.d.pers.Personnage;
 
 public class Plateau {
     private int nbCase;
@@ -10,7 +10,7 @@ public class Plateau {
             if (personnage.getPosPlayer() == i) {
                 System.out.print("**|");
             } else {
-                System.out.print("..|");
+                System.out.print(i +"|");
             }
         }
         System.out.println(" ");

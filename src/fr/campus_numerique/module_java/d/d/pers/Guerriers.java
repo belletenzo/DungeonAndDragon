@@ -1,10 +1,9 @@
-package fr.campus_numerique_module_java.d_d.pers.types;
+package fr.campus_numerique.module_java.d.d.pers;
 
-import fr.campus_numerique_module_java.d_d.pers.Personnage;
-import fr.campus_numerique_module_java.d_d.pers.stuff.Arme;
-import fr.campus_numerique_module_java.d_d.pers.stuff.Bouclier;
+import fr.campus_numerique.module_java.d.d.pers.stuff.Arme;
+import fr.campus_numerique.module_java.d.d.pers.stuff.Bouclier;
 
-public class Guerriers extends Personnage {
+public class Guerriers extends Personnage{
     Arme arme;
     Bouclier bouclier;
     public Guerriers(String name, String type){

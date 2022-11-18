@@ -1,4 +1,4 @@
-package fr.campus_numerique_module_java.d_d.pers;
+package fr.campus_numerique.module_java.d.d.pers;
 
 public abstract class Personnage {
     private String nom;

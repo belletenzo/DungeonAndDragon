@@ -1,6 +1,6 @@
-package fr.campus_numerique_module_java.d_d;
+package fr.campus_numerique.module_java.d.d;
 
-import fr.campus_numerique_module_java.d_d.game.Game;
+import fr.campus_numerique.module_java.d.d.game.Game;
 
 public class Main {
     public static void main(String[] args) {

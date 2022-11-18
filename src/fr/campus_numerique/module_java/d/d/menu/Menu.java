@@ -1,4 +1,4 @@
-package fr.campus_numerique_module_java.d_d.menu;
+package fr.campus_numerique.module_java.d.d.menu;
 
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ public class Menu {
     public static Scanner myObj = new Scanner(System.in);
 
     /**
-     * Fonction qui permet de démarrer
+     * @return String Fonction qui permet de démarrer
      */
     public String startMenu() {
         System.out.println("1.Nouveau personnage | 2.Quitter.");
@@ -14,7 +14,7 @@ public class Menu {
     }
 
     /**
-     * Retourne le choix du joueur pour le fr.campus_numerique_module_java.d_d.menu de création du personnage
+     * @return String le choix du joueur pour le fr.campus_numerique.module_java.d.d.menu de création du personnage
      */
     public String choosePersoType() {
 
@@ -28,10 +28,19 @@ public class Menu {
     }
 
     /**
-     * Retourne le choix du joueur pour le fr.campus_numerique_module_java.d_d.menu de fin de création du perso
+     * @return String le choix du joueur pour le fr.campus_numerique.module_java.d.d.menu de fin de création du perso
      */
     public String choiceFinalMenu() {
         System.out.println("1.Démarrer la partie | 2.Info Personnage | 3.Modifier | 4.Quitter.");
+        return myObj.nextLine().toLowerCase();
+    }
+
+    /**
+     *
+     * @return String
+     */
+    public String choiceRollDice(){
+        System.out.println("1.Lancer un dé | 2.Info Personnage | 3.Quitter");
         return myObj.nextLine().toLowerCase();
     }
 }

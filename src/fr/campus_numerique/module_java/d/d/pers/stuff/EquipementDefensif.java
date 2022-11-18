@@ -1,4 +1,4 @@
-package fr.campus_numerique_module_java.d_d.pers.stuff;
+package fr.campus_numerique.module_java.d.d.pers.stuff;
 
 public abstract class EquipementDefensif {
     protected int def;
