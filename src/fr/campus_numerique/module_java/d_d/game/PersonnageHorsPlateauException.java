@@ -1,4 +1,4 @@
-package fr.campus_numerique.module_java.d.d.game;
+package fr.campus_numerique.module_java.d_d.game;
 
 public class PersonnageHorsPlateauException extends Exception {
     public String message;

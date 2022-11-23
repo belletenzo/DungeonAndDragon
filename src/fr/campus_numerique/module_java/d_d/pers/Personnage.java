@@ -1,10 +1,10 @@
-package fr.campus_numerique.module_java.d.d.pers;
+package fr.campus_numerique.module_java.d_d.pers;
 
 public abstract class Personnage {
-    private String nom;
+    protected String nom;
     private String type;
-    private int pv;
-    private int forceatk;
+    protected int pv;
+    protected int forceatk;
     private int posPlayer;
 
     public int getPosPlayer() {
@@ -14,7 +14,6 @@ public abstract class Personnage {
     public void setPosPlayer(int posPlayer) {
         this.posPlayer = posPlayer;
     }
-
 
     public String getNom() {
         return nom;
@@ -49,11 +48,10 @@ public abstract class Personnage {
     }
 
 
-    public Personnage() {
-        this.nom = "";
-        this.type = "";
-        this.pv = 0;
-        this.forceatk = 0;
+    public Personnage(String name, int pv, int atk) {
+        this.nom = name;
+        this.pv = pv;
+        this.forceatk = atk;
     }
 
     public Personnage(String nom) {
@@ -63,7 +61,7 @@ public abstract class Personnage {
         this.forceatk = 0;
     }
 
-   public Personnage(String nom, String type) {
+    public Personnage(String nom, String type) {
         this.nom = nom;
         this.type = type;
         this.posPlayer = 0;

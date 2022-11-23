@@ -1,8 +1,9 @@
-package fr.campus_numerique.module_java.d.d.pers;
-import fr.campus_numerique.module_java.d.d.pers.stuff.Philtre;
-import fr.campus_numerique.module_java.d.d.pers.stuff.Sort;
+package fr.campus_numerique.module_java.d_d.pers.types;
+import fr.campus_numerique.module_java.d_d.pers.Personnage;
+import fr.campus_numerique.module_java.d_d.pers.stuff.stuff_magicien.Philtre;
+import fr.campus_numerique.module_java.d_d.pers.stuff.stuff_magicien.Sort;
 
-public class Magiciens extends Personnage{
+public class Magiciens extends Personnage {
     Sort sort;
     Philtre philtre;
     public Magiciens(String name, String type){
