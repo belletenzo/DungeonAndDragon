@@ -33,5 +33,7 @@ public abstract class Potion implements Case {
     @Override
     public void interact(Personnage perso) {
         System.out.println("Vous avez obtenu une " + name +" qui vous donne : " + pv + " pv");
+            int newPv = perso.getPv() + getPv();
+            perso.setPv(newPv);
     }
 }

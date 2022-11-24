@@ -1,10 +1,11 @@
 package fr.campus_numerique.module_java.d_d.game;
 
 
+import fr.campus_numerique.module_java.d_d.menu.Menu;
+import fr.campus_numerique.module_java.d_d.menu.UserChoice;
+import fr.campus_numerique.module_java.d_d.pers.Personnage;
 import fr.campus_numerique.module_java.d_d.pers.types.Guerriers;
 import fr.campus_numerique.module_java.d_d.pers.types.Magiciens;
-import fr.campus_numerique.module_java.d_d.pers.Personnage;
-import fr.campus_numerique.module_java.d_d.menu.Menu;
 import fr.campus_numerique.module_java.d_d.plateau.Plateau;
 
 import java.util.Objects;
@@ -21,33 +22,28 @@ public class Game {
      * Fonction qui permet de créer le perso en fonctions des choix des fonction  et createPersoName()
      */
     public void createPerso() {
-
-        if (Objects.equals(menu.startMenu(), "1")) {
-            registerType(menu.choosePersoType());
-            FinalChoiceCreatePerso(menu.choiceFinalMenu());
-        } else if (Objects.equals(menu.startMenu(), "2")) {
+        UserChoice userChoice = menu.startMenu();
+        if (userChoice == UserChoice.START){
+            registerType();
+            FinalChoiceCreatePersoMenu(menu.choiceFinalToStartParty());
+        } else if (userChoice == UserChoice.QUIT) {
             System.out.println("Bye");
-        } else {
-            System.out.println("Choisissez un choix valide !!!");
-            menu.startMenu();
-            createPerso();
         }
     }
 
     /**
      * Permet d'instancier un personnage en fonction du choix du joueur
      *
-     * @param type Prend en parametre le type du personnage qui sera choisit avec la fonction choosePersoType()
      */
-    private void registerType(String type) {
-
-        switch (type) {
-            case "guerrier" -> this.perso = new Guerriers(menu.createPersoName(), type);
-            case "magicien" -> this.perso = new Magiciens(menu.createPersoName(), type);
-            case "3" -> System.out.println("bye");
+    private void registerType() {
+        UserChoice userChoice = menu.choosePersoType();
+        switch (userChoice) {
+            case GUERRIER -> this.perso = new Guerriers(menu.createPersoName(), "Guerrier");
+            case MAGICIEN -> this.perso = new Magiciens(menu.createPersoName(), "Magicien");
+            case QUIT -> System.out.println("bye");
             default -> {
                 System.out.println("Choisissez un choix valide !!!");
-                registerType(menu.choosePersoType());
+                registerType();
             }
         }
     }
@@ -55,7 +51,7 @@ public class Game {
     /**
      * @param choice
      */
-    public void FinalChoiceCreatePerso(String choice) {
+    public void FinalChoiceCreatePersoMenu(String choice) {
         switch (choice) {
             case "1" -> {
                 plateau.toString(perso);
@@ -63,14 +59,14 @@ public class Game {
             }
             case "2" -> {
                 System.out.println(perso.toString());
-                FinalChoiceCreatePerso(menu.choiceFinalMenu());
+                FinalChoiceCreatePersoMenu(menu.choiceFinalToStartParty());
             }
             case "3" -> {
                 updatePerso(perso);
-                FinalChoiceCreatePerso(menu.choiceFinalMenu());
+                FinalChoiceCreatePersoMenu(menu.choiceFinalToStartParty());
             }
             case "4" -> System.out.println("Bye");
-            default -> menu.choiceFinalMenu();
+            default -> menu.choiceFinalToStartParty();
         }
     }
 
@@ -94,8 +90,8 @@ public class Game {
         return (int) (Math.floor(Math.random() * 6 + 1));
     }
 
-    private void forwardPerso() throws PersonnageHorsPlateauException {
-            switch (menu.choiceRollDice()) {
+    private void PlayATurn() throws PersonnageHorsPlateauException {
+            switch (menu.choiceForTurn()) {
                 case "1" -> {
                     int rolldice = rollDice();
                     System.out.println("Votre dé est de : " + rolldice);
@@ -108,15 +104,14 @@ public class Game {
                     System.out.println("bye");
                     System.exit(-1);
                 }
-                default -> menu.choiceRollDice();
+                default -> menu.choiceForTurn();
         }
     }
-
 
     private void play() {
         while (perso.getPosPlayer() < plateau.getPlateau().size()) {
             try {
-                forwardPerso();
+                PlayATurn();
             } catch (PersonnageHorsPlateauException e) {
                 System.out.println(e.toString());
                 break;

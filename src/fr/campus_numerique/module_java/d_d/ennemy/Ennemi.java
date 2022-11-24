@@ -10,7 +10,6 @@ public abstract class Ennemi extends Personnage implements Case {
         this.pv = pv;
         this.forceatk = atk;
     }
-
     @Override
     public void interact(Personnage perso) {
         System.out.println("Vous avez rencontré un " + nom);

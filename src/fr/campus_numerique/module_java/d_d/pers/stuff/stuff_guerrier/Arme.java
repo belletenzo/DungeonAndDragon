@@ -2,6 +2,7 @@ package fr.campus_numerique.module_java.d_d.pers.stuff.stuff_guerrier;
 
 import fr.campus_numerique.module_java.d_d.pers.Personnage;
 import fr.campus_numerique.module_java.d_d.pers.stuff.EquipementOffensif;
+import fr.campus_numerique.module_java.d_d.pers.types.Guerriers;
 import fr.campus_numerique.module_java.d_d.plateau.Case;
 
 public class Arme extends EquipementOffensif implements Case {
@@ -11,6 +12,13 @@ public class Arme extends EquipementOffensif implements Case {
 
     @Override
     public void interact(Personnage perso) {
-        System.out.println("Vous avez obtenu une " + name +" qui vous donne : " + atk + " atk");
+        System.out.println("Vous etes tombé sur une " + name+".");
+        if (perso instanceof Guerriers){
+            int newDegat = perso.getForceatk() + getAtk();
+            perso.setForceatk(newDegat);
+            System.out.println("Cela vous donne : " + atk + " atk en plus.");
+        } else {
+            System.out.println("Vous etes un magicien, vous ne pouvez donc pas l'aquérir.");
+        }
     }
 }
