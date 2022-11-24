@@ -1,4 +1,4 @@
-package fr.campus_numerique.module_java.d_d.ennemy;
+package fr.campus_numerique.module_java.d_d.enemy;
 
 import fr.campus_numerique.module_java.d_d.pers.Personnage;
 import fr.campus_numerique.module_java.d_d.plateau.Case;

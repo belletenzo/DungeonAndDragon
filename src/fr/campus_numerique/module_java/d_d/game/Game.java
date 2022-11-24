@@ -87,7 +87,7 @@ public class Game {
     }
 
     private int rollDice() {
-        return (int) (Math.floor(Math.random() * 6 + 1));
+        return (int) (Math.floor(Math.random() * 1 + 1));
     }
 
     private void PlayATurn() throws PersonnageHorsPlateauException {
