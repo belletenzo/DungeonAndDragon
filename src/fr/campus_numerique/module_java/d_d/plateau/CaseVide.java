@@ -10,8 +10,9 @@ public String message;
     }
 
     @Override
-    public void interact(Personnage perso) {
+    public boolean interact(Personnage perso) {
         System.out.println(message);
+        return true;
     }
 }
 

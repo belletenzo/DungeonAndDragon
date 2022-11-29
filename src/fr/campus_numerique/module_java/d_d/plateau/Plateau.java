@@ -21,10 +21,10 @@ public class Plateau {
     private final int nbCase;
 
     public void setPlateau(ArrayList<Case> plateau) {
-        this.plateau = plateau;
+        Plateau.plateau = plateau;
     }
 
-    private ArrayList<Case> plateau = new ArrayList<Case>();
+    private static ArrayList<Case> plateau = new ArrayList<Case>();
     public Plateau(){
             this.nbCase = 64;
             createRandBoard();
@@ -134,7 +134,7 @@ public class Plateau {
         }
     }
 
-    public void toString(Personnage personnage) {
+    public static void toString(Personnage personnage) {
         for (int i = 0; i < plateau.size(); i++) {
             if (personnage.getPosPlayer() == i) {
                 System.out.print("**|");

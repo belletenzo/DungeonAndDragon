@@ -10,7 +10,7 @@ public class Guerriers extends Personnage {
     public Guerriers(String name, String type){
         super(name, type);
         this.setPv(10);
-        this.setForceatk(10);
+        this.setForceatk(3);
         this.arme = new Arme("Épée",7);
         this.bouclier = new Bouclier("Bouclier en bois",5);
     }

@@ -6,6 +6,7 @@ import fr.campus_numerique.module_java.d_d.menu.UserChoice;
 import fr.campus_numerique.module_java.d_d.pers.Personnage;
 import fr.campus_numerique.module_java.d_d.pers.types.Guerriers;
 import fr.campus_numerique.module_java.d_d.pers.types.Magiciens;
+import fr.campus_numerique.module_java.d_d.plateau.CaseVide;
 import fr.campus_numerique.module_java.d_d.plateau.Plateau;
 
 import java.util.Objects;
@@ -25,7 +26,7 @@ public class Game {
         UserChoice userChoice = menu.startMenu();
         if (userChoice == UserChoice.START){
             registerType();
-            FinalChoiceCreatePersoMenu(menu.choiceFinalToStartParty());
+            FinalChoiceCreatePersoMenu(Menu.choiceFinalToStartParty());
         } else if (userChoice == UserChoice.QUIT) {
             System.out.println("Bye");
         }
@@ -36,10 +37,10 @@ public class Game {
      *
      */
     private void registerType() {
-        UserChoice userChoice = menu.choosePersoType();
+        UserChoice userChoice = Menu.choosePersoType();
         switch (userChoice) {
-            case GUERRIER -> this.perso = new Guerriers(menu.createPersoName(), "Guerrier");
-            case MAGICIEN -> this.perso = new Magiciens(menu.createPersoName(), "Magicien");
+            case GUERRIER -> this.perso = new Guerriers(Menu.createPersoName(), "Guerrier");
+            case MAGICIEN -> this.perso = new Magiciens(Menu.createPersoName(), "Magicien");
             case QUIT -> System.out.println("bye");
             default -> {
                 System.out.println("Choisissez un choix valide !!!");
@@ -54,19 +55,19 @@ public class Game {
     public void FinalChoiceCreatePersoMenu(String choice) {
         switch (choice) {
             case "1" -> {
-                plateau.toString(perso);
+                Plateau.toString(perso);
                 play();
             }
             case "2" -> {
                 System.out.println(perso.toString());
-                FinalChoiceCreatePersoMenu(menu.choiceFinalToStartParty());
+                FinalChoiceCreatePersoMenu(Menu.choiceFinalToStartParty());
             }
             case "3" -> {
                 updatePerso(perso);
-                FinalChoiceCreatePersoMenu(menu.choiceFinalToStartParty());
+                FinalChoiceCreatePersoMenu(Menu.choiceFinalToStartParty());
             }
             case "4" -> System.out.println("Bye");
-            default -> menu.choiceFinalToStartParty();
+            default -> Menu.choiceFinalToStartParty();
         }
     }
 
@@ -86,37 +87,40 @@ public class Game {
         }
     }
 
-    private int rollDice() {
-        return (int) (Math.floor(Math.random() * 1 + 1));
+    public static int rollDice() {
+        return (int) (Math.floor(Math.random() * 6 + 1));
     }
 
-    private void PlayATurn() throws PersonnageHorsPlateauException {
-            switch (menu.choiceForTurn()) {
+    private void playATurn() throws PersonnageHorsPlateauException {
+            switch (Menu.choiceForTurn()) {
                 case "1" -> {
                     int rolldice = rollDice();
                     System.out.println("Votre dé est de : " + rolldice);
                     plateau.movePerso(perso,rolldice);
-                    plateau.toString(perso);
-                    plateau.getPlateau().get(perso.getPosPlayer()).interact(perso);
+                    Plateau.toString(perso);
+                    if (plateau.getPlateau().get(perso.getPosPlayer()).interact(perso)){
+                        plateau.getPlateau().set(perso.getPosPlayer(), new CaseVide());
+                    }
                 }
                 case "2" -> System.out.println(perso.toString());
                 case "3" -> {
                     System.out.println("bye");
                     System.exit(-1);
                 }
-                default -> menu.choiceForTurn();
+                default -> Menu.choiceForTurn();
         }
     }
 
     private void play() {
-        while (perso.getPosPlayer() < plateau.getPlateau().size()) {
+        while (perso.getPosPlayer() < plateau.getPlateau().size() || perso.getPv() > 0) {
             try {
-                PlayATurn();
+                playATurn();
             } catch (PersonnageHorsPlateauException e) {
                 System.out.println(e.toString());
                 break;
             }
         }
+        System.out.println("Vous avez gagné(e) !!!!!.");
         createPerso();
     }
 }

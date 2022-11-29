@@ -11,7 +11,7 @@ public class Arme extends EquipementOffensif implements Case {
     }
 
     @Override
-    public void interact(Personnage perso) {
+    public boolean interact(Personnage perso) {
         System.out.println("Vous etes tombé sur une " + name+".");
         if (perso instanceof Guerriers){
             int newDegat = perso.getForceatk() + getAtk();
@@ -20,5 +20,6 @@ public class Arme extends EquipementOffensif implements Case {
         } else {
             System.out.println("Vous etes un magicien, vous ne pouvez donc pas l'aquérir.");
         }
+        return true;
     }
 }

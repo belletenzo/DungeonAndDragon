@@ -22,7 +22,7 @@ public class Menu {
     /**
      * @return String le choix du joueur pour le type du personnage
      */
-    public UserChoice choosePersoType() {
+    public static UserChoice choosePersoType() {
         UserChoice userChoice;
         String saisie;
         do{
@@ -41,7 +41,7 @@ public class Menu {
     /**
      * @return String le choix du joueur pour le nom du personnage
      */
-    public String createPersoName(){
+    public static String createPersoName(){
         System.out.println("Saisissez votre nom : ");
         return myObj.nextLine();
     }
@@ -49,7 +49,7 @@ public class Menu {
     /**
      * @return String le choix du joueur pour le fr.campus_numerique.module_java.d_d.menu de fin de création du perso
      */
-    public String choiceFinalToStartParty() {
+    public static String choiceFinalToStartParty() {
         System.out.println("1.Démarrer la partie | 2.Info Personnage | 3.Modifier | 4.Quitter.");
         return myObj.nextLine().toLowerCase();
     }
@@ -58,10 +58,20 @@ public class Menu {
      *
      * @return String Le choix du joueur pendant la partie, si il souhaite lancer le dé, voir les stats ou quitter
      */
-    public String choiceForTurn(){
+    public static String choiceForTurn(){
         System.out.println("1.Lancer un dé | 2.Info Personnage | 3.Quitter");
         return myObj.nextLine().toLowerCase();
     }
-}
+    public static UserChoice choiceAttackOrRun(){
+        UserChoice userChoice;
+        String saisie;
+        do{
+            System.out.println("1.Attaquer | 2.Fuite");
+            saisie = myObj.nextLine().toLowerCase();
+            userChoice = saisie.equals("1")?UserChoice.ATTACK:UserChoice.RUN;
+        } while (!saisie.equals("1") && !saisie.equals("2"));
+        return userChoice;
+    }
 
+}
 

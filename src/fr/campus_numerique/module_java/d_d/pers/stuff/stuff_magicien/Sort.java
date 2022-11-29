@@ -11,7 +11,7 @@ public class Sort extends EquipementOffensif implements Case {
     }
 
     @Override
-    public void interact(Personnage perso) {
+    public boolean interact(Personnage perso) {
         System.out.println("Vous etes tombé sur le sort " + name+".");
         if (perso instanceof Magiciens){
             int newDegat = perso.getForceatk() + getAtk();
@@ -20,5 +20,6 @@ public class Sort extends EquipementOffensif implements Case {
         } else {
             System.out.println("Vous etes un guerrier, vous ne pouvez donc pas l'aquérir.");
         }
+        return true;
     }
 }
