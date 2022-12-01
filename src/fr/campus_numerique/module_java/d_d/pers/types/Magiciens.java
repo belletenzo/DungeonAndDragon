@@ -6,8 +6,8 @@ import fr.campus_numerique.module_java.d_d.pers.stuff.stuff_magicien.Sort;
 public class Magiciens extends Personnage {
     Sort sort;
     Philtre philtre;
-    public Magiciens(String name, String type){
-        super(name, type);
+    public Magiciens(String name){
+        super(name, "Magicien");
         this.setPv(6);
         this.setForceatk(15);
         this.sort = new Sort("Foudre",10);

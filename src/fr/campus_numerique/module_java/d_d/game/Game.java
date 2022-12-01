@@ -1,6 +1,7 @@
 package fr.campus_numerique.module_java.d_d.game;
 
 
+import fr.campus_numerique.module_java.d_d.game.connexion.ConnSingleton;
 import fr.campus_numerique.module_java.d_d.menu.Menu;
 import fr.campus_numerique.module_java.d_d.menu.UserChoice;
 import fr.campus_numerique.module_java.d_d.pers.Personnage;
@@ -9,26 +10,32 @@ import fr.campus_numerique.module_java.d_d.pers.types.Magiciens;
 import fr.campus_numerique.module_java.d_d.plateau.CaseVide;
 import fr.campus_numerique.module_java.d_d.plateau.Plateau;
 
-import java.util.Objects;
-
-import static fr.campus_numerique.module_java.d_d.menu.Menu.myObj;
-
 public class Game {
     Menu menu = new Menu();
     Plateau plateau = new Plateau();
+    public ConnSingleton conn = ConnSingleton.getInstance();
 
     public Personnage perso;
-
     /**
      * Fonction qui permet de créer le perso en fonctions des choix des fonction  et createPersoName()
      */
     public void createPerso() {
         UserChoice userChoice = menu.startMenu();
-        if (userChoice == UserChoice.START){
-            registerType();
-            FinalChoiceCreatePersoMenu(Menu.choiceFinalToStartParty());
-        } else if (userChoice == UserChoice.QUIT) {
-            System.out.println("Bye");
+        switch (userChoice) {
+            case START -> {
+                registerType();
+                FinalChoiceCreatePersoMenu(Menu.choiceFinalToStartParty());
+            }
+            case QUIT -> {
+                System.out.println("Bye");
+                System.exit(-1);
+            }
+            case UPLOAD -> {
+                conn.getHeroes();
+                int id = Menu.choiceImportCharacter();
+                conn.selectHero(id);
+                FinalChoiceCreatePersoMenu(Menu.choiceFinalToStartParty());
+            }
         }
     }
 
@@ -39,8 +46,14 @@ public class Game {
     private void registerType() {
         UserChoice userChoice = Menu.choosePersoType();
         switch (userChoice) {
-            case GUERRIER -> this.perso = new Guerriers(Menu.createPersoName(), "Guerrier");
-            case MAGICIEN -> this.perso = new Magiciens(Menu.createPersoName(), "Magicien");
+            case GUERRIER -> {
+                this.perso = new Guerriers(Menu.createPersoName());
+                conn.createHero(perso);
+            }
+            case MAGICIEN -> {
+                this.perso = new Magiciens(Menu.createPersoName());
+                conn.createHero(perso);
+            }
             case QUIT -> System.out.println("bye");
             default -> {
                 System.out.println("Choisissez un choix valide !!!");
@@ -72,18 +85,13 @@ public class Game {
     }
 
     public void updatePerso(Personnage perso) {
-        System.out.println("Nom du personnage :");
-        String name = myObj.nextLine();
+        String name = Menu.createPersoName();
         perso.setNom(name);
-        System.out.println("Classe du personnage : Guerrier | Magicien");
-        String choice = myObj.nextLine().toLowerCase();
-
-        if (Objects.equals(choice, "magicien")) {
-            this.perso = new Magiciens(name, choice);
-        } else if (Objects.equals(choice, "guerrier")) {
-            this.perso = new Guerriers(name, choice);
-        } else {
-            System.out.println("error");
+        UserChoice choice = Menu.choosePersoType();
+        switch (choice) {
+            case MAGICIEN -> this.perso = new Magiciens(name);
+            case GUERRIER -> this.perso = new Guerriers(name);
+            default -> System.out.println("error");
         }
     }
 

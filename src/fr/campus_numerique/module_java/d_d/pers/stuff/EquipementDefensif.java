@@ -27,7 +27,7 @@ public abstract class EquipementDefensif {
     }
 
     public String toString() {
-        return "| Equipement offensif : " + name + " def : " + def;
+        return "| Equipement défensif : " + name + " def : " + def;
     }
 
 }

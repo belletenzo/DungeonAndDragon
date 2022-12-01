@@ -12,11 +12,20 @@ public class Menu {
         UserChoice userChoice;
         String saisie;
         do{
-            System.out.println("1.Nouveau personnage | 2.Quitter.");
+            System.out.println("1.Nouveau personnage | 2.Importer un personnage | 3.Quitter.");
              saisie = myObj.nextLine().toLowerCase();
-            userChoice = saisie.equals("1")?UserChoice.START:UserChoice.QUIT;
-        } while (!saisie.equals("1") && !saisie.equals("2"));
-        return userChoice;
+           if (saisie.equals("1")){
+               userChoice = UserChoice.START;
+               return userChoice;
+           } else if (saisie.equals("2")) {
+               userChoice = UserChoice.UPLOAD;
+               return userChoice;
+           } else if (saisie.equals("3")) {
+               userChoice = UserChoice.QUIT;
+               return userChoice;
+           }
+        } while (!saisie.equals("1") && !saisie.equals("2") && !saisie.equals("3") );
+        return null;
     }
 
     /**
@@ -62,6 +71,11 @@ public class Menu {
         System.out.println("1.Lancer un dé | 2.Info Personnage | 3.Quitter");
         return myObj.nextLine().toLowerCase();
     }
+
+    /**
+     *
+     * @return UserChoice Le choix du joueurs si il souhaite attaquer ou fuir
+     */
     public static UserChoice choiceAttackOrRun(){
         UserChoice userChoice;
         String saisie;
@@ -73,5 +87,14 @@ public class Menu {
         return userChoice;
     }
 
+    /**
+     *
+     * @return String Le choix du personnage à importer
+     */
+    public static int choiceImportCharacter(){
+        System.out.println("\n" + "Choisissez un personnage selon l'ID :");
+        String id = myObj.nextLine().toLowerCase();
+        return Integer.parseInt(id);
+    }
 }
 

@@ -22,8 +22,8 @@ public abstract class Ennemi extends Personnage implements Case {
             UserChoice userChoice = Menu.choiceAttackOrRun();
             switch (userChoice) {
                 case ATTACK -> {
-                    setPv(pv - perso.getForceatk());
-                    perso.setPv(perso.getPv() - forceatk);
+                    setPv(pv - perso.getForceatk()); // Attaque l'ennemi en fonction des dégats du personnage, les pv de l'ennemi sont mis à jour
+                    perso.setPv(perso.getPv() - forceatk); // L'ennemi attaque le personnage en fonction des dégats d'attaque de l'ennemi, les pv du joueur sont mis à jour
                     System.out.println("Vous avez infligé " + perso.getForceatk() + " points de dégats à l'ennemi." +
                             "\n" + "L'ennemi à désormais " + getPv() + " points de vie." + "\n" + "Vous avez pris -" + forceatk + " points de vie." +
                             "\n" + "Vos pv sont à : " + perso.getPv() + " points de vie.");
